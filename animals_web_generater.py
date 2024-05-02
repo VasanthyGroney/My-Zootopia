@@ -7,7 +7,7 @@ def load_data(file_path):
         return json.load(handle)
 
 def print_animals_data(animals_data):
-    content = ''  # define an empty string
+    content = ''
     for animal in animals_data:
         if 'locations' in animal:
             location = animal['locations'][0]
