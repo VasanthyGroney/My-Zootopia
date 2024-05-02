@@ -1,6 +1,8 @@
 import json
 
+
 def load_data(file_path):
+    ''' Function to load data'''
     with open(file_path, "r") as handle:
         return json.load(handle)
 
