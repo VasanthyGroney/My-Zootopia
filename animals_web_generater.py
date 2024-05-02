@@ -14,15 +14,18 @@ def print_animals_data(animals_data):
         else:
             location = "undefined"
         content += "<li class=\"cards__item\">"
-
+        content += "<div class=\"card__title\">"
+        content += "<p class=\"card__text\">"
         content += f"Name: {animal['name']}<br/>"
-        content += f"Diet: {animal['characteristics']['diet']}<br/>"
-        content += f"Location: {location}<br/>"
+        content += f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>"
+        content += f"<strong>Location:</strong> {location}<br/>"
+
         if 'type' in animal['characteristics']:
             type = animal['characteristics']['type']
         else:
             type = "undefined"
-        content += f"Type: {type}<br/>"
+        content += "<strong>Type:</strong> " + type + "<br/>"
+        content += "</p>"
         content += "</li>"
     return content
 
