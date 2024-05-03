@@ -16,7 +16,7 @@ def print_animals_data(animals_data):
         content += "<li class=\"cards__item\">"
         content += "<div class=\"card__title\">"
         content += "<p class=\"card__text\">"
-        content += f"Name: {animal['name']}<br/>"
+        content += f"{animal['name']}</div>"
         content += f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>"
         content += f"<strong>Location:</strong> {location}<br/>"
 
