@@ -1,10 +1,23 @@
-import json
+import requests
+import data_fetcher
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
+print(API_KEY)
+def fetch_api(animal_name):
+    """
+        Fetch animal data from the API.
+        """
+
+    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(animal_name)
+    response = requests.get(api_url, headers={'X-Api-Key': API_KEY})
+    if response.status_code == requests.codes.ok:
+        return response.json()
+    else:
+        return []
 
 
-def load_data(file_path):
-    ''' Function to load data'''
-    with open(file_path, "r") as handle:
-        return json.load(handle)
 
 
 def serialize_animal(animal_obj):
@@ -60,12 +73,17 @@ def write_html(new_string, new_file):
         handle.write(new_string)
 
 def main():
-    animals_data = load_data('animals_data.json')
-    output = print_animals_data(animals_data)
+    animal_name = input("Enter the name of an animal: ").strip().lower()
+    animal_data = fetch_api(animal_name)
+
+    if len(animal_data) == 0:
+        output = f"<h2>The animal {animal_name} doesn't exist.</h2>"
+    else:
+        output = print_animals_data(animal_data)
+    data = data_fetcher.fetch_data(animal_name)
     html_temp = read_html("animals_template.html")
     new_string = replace_animals_info(output, html_temp)
     write_html(new_string, 'animals.html')
-
 
 
 if __name__=="__main__":
